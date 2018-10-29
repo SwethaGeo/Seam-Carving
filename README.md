@@ -1,4 +1,4 @@
-In this project, I implemented seam removal, seam insertion and optimal order retargeting.
+In this project, I implemented seam removal, seam insertion and optimal order retargeting based on the paper **Seam Carving for Content-Aware Image Resizing** by Shai Avidan and Ariel Shamir.
 
 **Seam Removal(vertical):** </br>
 First, I calculated the total energy e of the image by adding the absolute sum of the x and y gradient for each channel; the gradient function used was np.gradient. Then calculated the cumulative minimum energy M where the first row of M was same as e and rest of the entries (i,j) was determined using dynamic programming M(i,j) = e(i,j) + min(M(i-1,j-1),M(i-1,j),M(i-1,j+1)). Then backtracked from the minimum value of M in the last row and found the minimum energy seam. Then removed the seam path using mask; the value along seam path for each channel was marked as false and by using the mask as index for the image removed the values along the seam path.
